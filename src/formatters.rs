@@ -65,7 +65,7 @@ impl ShellFormatter {
         } else {
             "\x1b[31m✗\x1b[0m"
         };
-        let message = result.message.as_ref().map(|s| s.as_str()).unwrap_or("");
+        let message = result.message.as_deref().unwrap_or("");
         let mut feedback = format!(
             "{} {}: {}",
             prefix,
@@ -94,7 +94,7 @@ impl ShellFormatter {
             .clone()
     }
 
-    fn extract_prompt<'a>(&self, content: &'a str) -> (String, Option<&'static str>) {
+    fn extract_prompt(&self, content: &str) -> (String, Option<&'static str>) {
         if PROMPT_REGEX.is_match(content) {
             let cleaned = PROMPT_REGEX.replace_all(content, "").trim_end().to_string();
             (format!("{}\n\n", cleaned), Some("> "))

@@ -114,7 +114,7 @@ impl Dfrotz {
 
         let stdout_reader = self.stdout_reader.as_ref().unwrap().clone();
         let timeout = self.timeout;
-        let pattern_clone = pattern.map(|p| p.clone());
+        let pattern_clone = pattern.cloned();
 
         // Spawn a thread to read with timeout
         let handle = thread::spawn(move || -> String {

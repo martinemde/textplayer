@@ -11,7 +11,7 @@ use std::collections::HashMap;
 
 /// Parse save/restore command from input
 fn parse_save_restore(input: &str, game_name: Option<&str>) -> Option<Savefile> {
-    let parts: Vec<&str> = input.trim().split_whitespace().collect();
+    let parts: Vec<&str> = input.split_whitespace().collect();
     if parts.is_empty() {
         return None;
     }
